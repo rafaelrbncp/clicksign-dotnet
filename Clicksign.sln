@@ -29,6 +29,8 @@ Global
 		{7D11DF7E-4BCB-460B-BACB-51ED94A67B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D11DF7E-4BCB-460B-BACB-51ED94A67B37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
