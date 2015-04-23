@@ -1,4 +1,7 @@
-﻿namespace ClicksignTest
+﻿using System.IO;
+using System.Linq;
+
+namespace ClicksignTest
 {
     class Program
     {
@@ -13,7 +16,14 @@
         {
             var clicksign = new Clicksign.Clicksign();
 
-            var document = clicksign.Get("A5E6-E2F6-47E9-23D2");
+            var list = clicksign.List();
+
+            var document = clicksign.Get(list.First().Key);
+
+            var document2 = clicksign.Download(list.First().Key);
+
+            File.WriteAllBytes("Download-Clicksign.zip",document2);
         }
+
     }
 }
