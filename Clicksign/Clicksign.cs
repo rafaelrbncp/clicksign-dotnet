@@ -15,7 +15,6 @@ namespace Clicksign
     /// </summary>
     public class Clicksign
     {
-        private const int MaxTentatives = 5;
 
         /// <summary>
         /// Initialize new instance of class <see cref="Clicksign"/>
@@ -280,29 +279,40 @@ namespace Clicksign
         }
 
         /// <summary>
-        /// Download <see cref="Document"/>, more information visit <see cref="http://github.com/clicksign/rest-api#download-de-documento">Clicksign Rest API</see>
+        ///     Download <see cref="Document" />, more information visit
+        ///     <see cref="http://github.com/clicksign/rest-api#download-de-documento">Clicksign Rest API</see>
         /// </summary>
-        public byte[] Download(string key)
+        public DownloadResponse Download(string key)
         {
-            var client = new RestClient(Host);
-            IRestResponse response = new RestResponse() { StatusCode = HttpStatusCode.Accepted};
-            for(var i = 0; response.StatusCode == HttpStatusCode.Accepted && i < MaxTentatives ; i++) {
-                if (i > 0)
-                {
-                    Thread.Sleep(1000); //Wait a second between tentatives
-                }
+            var downloadResponse = new DownloadResponse();
+
+            try
+            {
+                var client = new RestClient(Host);
                 var request = new RestRequest(string.Format("v1/documents/{0}/download", key), Method.GET);
                 request.AddParameter("access_token", Token);
                 request.AddHeader("Accept", "application/json");
 
                 Log.Debug(string.Format("Download document with Token {0}", Token));
 
-                response = client.Execute(request); 
+                var response = client.Execute(request);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    downloadResponse.binaryFile = response.RawBytes;
+                }
+                else if (response.StatusCode != HttpStatusCode.Accepted)
+                {
+                    downloadResponse.AddDownloadError("StatusCode unexpected -" + response.StatusCode);
+                    Log.Debug(string.Format("Error - Download document with Token {0}", Token));
+                }
+            }
+            catch (Exception e)
+            {
+                downloadResponse.AddDownloadError(e.Message, e);
             }
 
-            if (response.StatusCode == HttpStatusCode.OK) return response.RawBytes;
-            Log.Debug(string.Format("Error - Download document with Token {0}", Token));
-            return null;
+            return downloadResponse;
         }
 
         private IRestResponse<T> Execute<T>(RestClient client, IRestRequest request) where T : new()
