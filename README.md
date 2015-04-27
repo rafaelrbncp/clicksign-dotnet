@@ -118,7 +118,9 @@ var hook = clicksign.CreateHook(document, "https://www.linkedin.com/in/adrianoca
 Console.Write(hook.Id);
 ```
 
-####<a name="utilizacao-enviando-arquivo-lista-unica-chamada"></a>Enviando um arquivo e criando uma lista de assinatura em uma única chamada http://clicksign.readme.io/v1.0/docs/upload-e-lista-de-assinatura
+####<a name="utilizacao-enviando-arquivo-lista-unica-chamada"></a>Enviando um arquivo e criando uma lista de assinatura em uma única chamada
+
+Conforme a documentação http://clicksign.readme.io/v1.0/docs/upload-e-lista-de-assinatura.
 
 ```csharp
 var clicksign = new Clicksign();
