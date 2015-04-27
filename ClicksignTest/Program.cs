@@ -6,7 +6,7 @@ namespace ClicksignTest
 {
     class Program
     {
-        static void Main()
+        private static void Main()
         {
             log4net.Config.XmlConfigurator.Configure();
 
