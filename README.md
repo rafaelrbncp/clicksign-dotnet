@@ -42,7 +42,7 @@ No arquivo de configuração do seu projeto adicione as linhas abaixo:
 
 ####<a name="utilizacao-lista-documento"></a>Recuperando lista de documentos
 
-Conforme a documentação http://clicksign.github.io/rest-api/#listagem-de-documentos, é possível obter uma listagem de todos os documentos da conta além de informações extras pertinentes ao andamento da lista de assinatura. A listagem retornarár todos os documentos na conta, sem a necessidade de parâmetros de paginação ou busca.
+Conforme a documentação http://clicksign.readme.io/v1.0/docs/listagem, é possível obter uma listagem de todos os documentos da conta além de informações extras pertinentes ao andamento da lista de assinatura. A listagem retornarár todos os documentos na conta, sem a necessidade de parâmetros de paginação ou busca.
 
 ```csharp
 var clicksign = new Clicksign();
@@ -53,7 +53,7 @@ Console.Write(list.Count);
 
 ####<a name="utilizacao-recupera-documento"></a>Recuperando documento
 
-Conforme a documentação http://clicksign.github.io/rest-api/#visualizacao-de-documento, é possível obter um documento da conta através da chave do documento, além de informações extras pertinentes ao andamento da lista de assinatura. 
+Conforme a documentação http://clicksign.readme.io/v1.0/docs/visualizacao, é possível obter um documento da conta através da chave do documento, além de informações extras pertinentes ao andamento da lista de assinatura. 
 
 ```csharp
 var clicksign = new Clicksign();
@@ -64,7 +64,7 @@ Console.Write(document.Key);
 
 ####<a name="utilizacao-enviando-arquivo"></a>Enviando um arquivo
 
-Conforme a documentação http://clicksign.github.io/rest-api/#listagem-de-documentos, o processo de envio de um documento para a Clicksign contempla a criação de um arquivo de log contendo informações de upload, usuário, etc, anexado a uma cópia do documento "carimbada" com um número de série. Ao final do processo haverá 2 arquivos na Clicksign: documento original e arquivo de log. Enquanto o arquivo é processado a requisição não fica bloqueada. O status do documento será working enquanto o processo ocorre. Após concluído, o status será open.
+Conforme a documentação http://clicksign.readme.io/v1.0/docs/upload, o processo de envio de um documento para a Clicksign contempla a criação de um arquivo de log contendo informações de upload, usuário, etc, anexado a uma cópia do documento "carimbada" com um número de série. Ao final do processo haverá 2 arquivos na Clicksign: documento original e arquivo de log. Enquanto o arquivo é processado a requisição não fica bloqueada. O status do documento será working enquanto o processo ocorre. Após concluído, o status será open.
 
 ```csharp
 var clicksign = new Clicksign();
@@ -87,7 +87,7 @@ Console.Write(clicksign.Document.Key);
 
 ####<a name="utilizacao-criando-lista"></a>Criando uma lista de assinatura
 
-Conforme a documentação http://clicksign.github.io/rest-api/#criacao-de-lista-de-assinatura, é possível criar uma lista de assinatura e enviá-la a outras pessoas em uma única ação. Para isso, é necessário que estejam presentes os campos que especificam o documento, os signatários, e a mensagem.
+Conforme a documentação http://clicksign.readme.io/v1.0/docs/lista-de-assinatura, é possível criar uma lista de assinatura e enviá-la a outras pessoas em uma única ação. Para isso, é necessário que estejam presentes os campos que especificam o documento, os signatários, e a mensagem.
 
 ```csharp
 var clicksign = new Clicksign();
@@ -107,7 +107,7 @@ Console.Write(clicksign.Document.Key);
 
 ####<a name="utilizacao-criando-hook"></a>Criando um Hook
 
-Conforme a documentação http://clicksign.github.io/rest-api/#hooks, é possível que a Clicksign notifique outras aplições à respeito da alteração de estado de um determinado documento.
+Conforme a documentação http://clicksign.readme.io/v1.0/docs/webhooks, é possível que a Clicksign notifique outras aplições à respeito da alteração de estado de um determinado documento.
 
 ```csharp
 var clicksign = new Clicksign();
@@ -118,7 +118,7 @@ var hook = clicksign.CreateHook(document, "https://www.linkedin.com/in/adrianoca
 Console.Write(hook.Id);
 ```
 
-####<a name="utilizacao-enviando-arquivo-lista-unica-chamada"></a>Enviando um arquivo e criando uma lista de assinatura em uma única chamada
+####<a name="utilizacao-enviando-arquivo-lista-unica-chamada"></a>Enviando um arquivo e criando uma lista de assinatura em uma única chamada http://clicksign.readme.io/v1.0/docs/upload-e-lista-de-assinatura
 
 ```csharp
 var clicksign = new Clicksign();
@@ -143,7 +143,7 @@ Console.Write(clicksign.Document.Key);
 - Versão 1.0.3
 	- Implementação de log4net.
 - Versão 1.0.4
-	- Implementação do método Get referente a funcionalidade de visualizar documento, conforme documentação http://clicksign.github.io/rest-api/#visualizacao-de-documento.
+	- Implementação do método Get referente a funcionalidade de visualizar documento.
 	- Atualização de dependências.
 	- Projeto para testar os métodos da API.
 - Versão 1.0.5
