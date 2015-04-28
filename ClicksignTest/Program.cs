@@ -1,8 +1,12 @@
-﻿namespace ClicksignTest
+﻿using System.IO;
+using System.Linq;
+using Clicksign;
+
+namespace ClicksignTest
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             log4net.Config.XmlConfigurator.Configure();
 
@@ -13,7 +17,19 @@
         {
             var clicksign = new Clicksign.Clicksign();
 
-            var document = clicksign.Get("A5E6-E2F6-47E9-23D2");
+            var list = clicksign.List();
+
+            // ReSharper disable once UnusedVariable
+            var document = clicksign.Get(list.First().Key);
+
+            DownloadResponse downloadResponse;
+            do
+            {
+                downloadResponse = clicksign.Download(list.First().Key);
+            } while (!downloadResponse.isActionFinished);
+
+            File.WriteAllBytes("Download-Clicksign.zip",downloadResponse.binaryFile);
         }
+
     }
 }

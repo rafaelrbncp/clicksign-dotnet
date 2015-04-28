@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Threading;
 using log4net;
 using RestSharp;
 
@@ -13,6 +15,7 @@ namespace Clicksign
     /// </summary>
     public class Clicksign
     {
+
         /// <summary>
         /// Initialize new instance of class <see cref="Clicksign"/>
         /// </summary>
@@ -274,6 +277,43 @@ namespace Clicksign
             if(document == null) Log.Debug("Document not found with key " + key);
 
             return document;
+        }
+
+        /// <summary>
+        ///     Download <see cref="Document" />, more information visit
+        ///     <see cref="http://github.com/clicksign/rest-api#download-de-documento">Clicksign Rest API</see>
+        /// </summary>
+        public DownloadResponse Download(string key)
+        {
+            var downloadResponse = new DownloadResponse();
+
+            try
+            {
+                var client = new RestClient(Host);
+                var request = new RestRequest(string.Format("v1/documents/{0}/download", key), Method.GET);
+                request.AddParameter("access_token", Token);
+                request.AddHeader("Accept", "application/json");
+
+                Log.Debug(string.Format("Download document with Token {0}", Token));
+
+                var response = client.Execute(request);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    downloadResponse.binaryFile = response.RawBytes;
+                }
+                else if (response.StatusCode != HttpStatusCode.Accepted)
+                {
+                    downloadResponse.AddDownloadError("StatusCode unexpected -" + response.StatusCode);
+                    Log.Debug(string.Format("Error - Download document with Token {0}", Token));
+                }
+            }
+            catch (Exception e)
+            {
+                downloadResponse.AddDownloadError(e.Message, e);
+            }
+
+            return downloadResponse;
         }
 
         private IRestResponse<T> Execute<T>(RestClient client, IRestRequest request) where T : new()
