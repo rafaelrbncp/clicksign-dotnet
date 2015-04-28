@@ -171,7 +171,8 @@ namespace Clicksign
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("access_token", Token);
-            request.AddParameter("skip_email", document.List.SkipEmail.ToString().ToLower());
+            if (document.List.SkipEmail)
+                request.AddParameter("skip_email", "true");
             request.AddParameter("message", document.List.Message);
 
             Log.Debug(string.Format("Send list of Signatories with Token {0}, SkipEmail {1}, Message {2} and {3} signatories",
