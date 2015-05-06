@@ -1,5 +1,5 @@
 ## Clicksign for .Net
-
+[![Build status](https://ci.appveyor.com/api/projects/status/cl241uti33od4rpr?svg=true)](https://ci.appveyor.com/project/rodrigomaia17/clicksign-dotnet)
 Biblioteca em .Net para consumo dos serviços da Clicksign.
 
 A Clicksign é uma solução online para enviar, guardar e assinar documentos, com validade jurídica. Foi criada para facilitar, reduzir custo e aumentar a segurança e compliance do processo de assinatura e workflow de documentos.
@@ -25,7 +25,7 @@ Atualmente a biblioteca <a href="https://github.com/adrianocaldeira/clicksign-fo
 
 Para instalar, execute o seguinte comando no <a href="http://docs.nuget.org/docs/start-here/using-the-package-manager-console#Installing_a_Package" target="_blank">Package Manager Console</a>.
 
-<img src="https://raw.githubusercontent.com/adrianocaldeira/clicksign-for-dotnet/master/nuget.png"/>
+<img src="https://raw.githubusercontent.com/clicksign/clicksign-dotnet/master/nuget.png"/>
 
 ## <a name="configuracao"></a>Configuração
 
