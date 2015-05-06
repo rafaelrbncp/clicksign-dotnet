@@ -1,5 +1,6 @@
 ## Clicksign for .Net
 [![Build status](https://ci.appveyor.com/api/projects/status/cl241uti33od4rpr?svg=true)](https://ci.appveyor.com/project/rodrigomaia17/clicksign-dotnet)
+
 Biblioteca em .Net para consumo dos serviços da Clicksign.
 
 A Clicksign é uma solução online para enviar, guardar e assinar documentos, com validade jurídica. Foi criada para facilitar, reduzir custo e aumentar a segurança e compliance do processo de assinatura e workflow de documentos.
