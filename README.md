@@ -7,6 +7,8 @@ A Clicksign é uma solução online para enviar, guardar e assinar documentos, c
 
 Documentação da API está disponível em <a href="http://clicksign.readme.io" target="_blank">http://clicksign.readme.io</a>.
 
+**Exemplo de utilização da biblioteca disponível em https://github.com/clicksign/dotnet-api-example**
+
 Atualmente a biblioteca <a href="https://github.com/adrianocaldeira/clicksign-for-dotnet">Clicksign for .Net</a> está em acordo com a versão mais recente da Clicksign.
 
 ## Índice
