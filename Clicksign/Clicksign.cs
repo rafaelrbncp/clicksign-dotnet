@@ -221,7 +221,7 @@ namespace Clicksign
         }
 
         /// <summary>
-        /// Resend a document
+        /// Resend an email with a message about a document
         /// </summary>
         /// <param name="documentKey">document key</param>
         /// <param name="email">email to send</param>
