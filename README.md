@@ -153,4 +153,6 @@ Console.Write(clicksign.Document.Key);
 	- Projeto para testar os métodos da API.
 - Versão 1.0.5
 	- Atualização de dependências.
+- Versão 1.0.6
+	- Implementação dos métodos Resend e Cancel
 

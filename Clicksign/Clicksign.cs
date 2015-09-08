@@ -221,6 +221,42 @@ namespace Clicksign
         }
 
         /// <summary>
+        /// Resend an email with a message about a document
+        /// </summary>
+        /// <param name="documentKey">document key</param>
+        /// <param name="email">email to send</param>
+        /// <param name="message">message to send</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public Clicksign Resend(string documentKey, string email, string message)
+        {
+            if (string.IsNullOrEmpty(documentKey))
+                throw new ArgumentNullException("documentKey", "documentKey is empty.");
+
+            if (string.IsNullOrEmpty(email))
+                throw new ArgumentNullException("email", "email is empty.");
+
+            var client = new RestClient(Host);
+            var request = new RestRequest(string.Format("v1/documents/{0}/resend",documentKey), Method.POST);
+
+            request.AddParameter("access_token", Token);
+            request.AddHeader("Accept", "application/json");
+
+            request.AddParameter("email", email);
+            request.AddParameter("message", message);
+
+            Log.Debug(string.Format("Resending document {0} to an email with token {1} ",documentKey, Token));
+
+            var response = Execute<List<Result>>(client, request);
+
+            if(response.StatusCode == HttpStatusCode.OK)
+                Log.Debug("Success");
+
+            return this;
+        }
+
+
+        /// <summary>
         /// Create hook, more information visit <see cref="http://clicksign.github.io/rest-api-v2/#hooks">Clicksign Rest API</see>
         /// </summary>
         /// <param name="url">Url</param>
@@ -255,6 +291,28 @@ namespace Clicksign
             Log.Debug(string.Format("Create hook of document with Token {0}, Document {1} and Url {2}", Token, document.Key, url));
             
             return Execute<HookResult>(client, request).Data;
+        }
+
+        /// <summary>
+        /// Cancel <see cref="Document"/>, more information visit <see cref="http://clicksign.github.io/rest-api/#visualizacao-de-documento">Clicksign Rest API</see>
+        /// </summary>
+        /// <returns><see cref="Document"/></returns>
+        public Document Cancel(string key)
+        {
+            var client = new RestClient(Host);
+            var request = new RestRequest(string.Format("v1/documents/{0}/cancel", key), Method.POST);
+
+            request.AddParameter("access_token", Token);
+            request.AddHeader("Accept", "application/json");
+
+            Log.Debug(string.Format("Cancel document with Token {0}", Token));
+
+            var response = Execute<Result>(client, request);
+            var document = response.Data.Document;
+
+            if (document == null) Log.Debug("Document not found with key " + key);
+
+            return document;
         }
 
         /// <summary>
@@ -315,6 +373,7 @@ namespace Clicksign
 
             return downloadResponse;
         }
+
 
         private IRestResponse<T> Execute<T>(RestClient client, IRestRequest request) where T : new()
         {
