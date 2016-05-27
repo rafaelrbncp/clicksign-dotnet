@@ -24,6 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Clicksign.xml</DocumentationFile>
+    <NoWarn>1591,1572,1571,1573,1587,1570</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,15 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clicksign.cs" />
+    <Compile Include="ClicksignService.cs" />
+    <Compile Include="Errors.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="DocumentList.cs" />
     <Compile Include="DocumentSignature.cs" />
     <Compile Include="DownloadError.cs" />
     <Compile Include="DownloadResponse.cs" />
+    <Compile Include="Extensions\IRestResponseExtensions.cs" />
     <Compile Include="HookResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="Signatory.cs" />
+    <Compile Include="SignatoryAllowMethod.cs" />
     <Compile Include="SignatoryAction.cs" />
   </ItemGroup>
   <ItemGroup>
