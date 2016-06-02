@@ -9,13 +9,15 @@ namespace Clicksign
         /// Token
         /// </summary>
         Token,
+
         /// <summary>
         /// Sms
         /// </summary>
         Sms,
+
         /// <summary>
         /// Passoword
         /// </summary>
-        Passoword,        
+        Passoword,
     }
 }

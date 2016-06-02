@@ -1,5 +1,5 @@
-using System;
 using RestSharp.Deserializers;
+using System;
 
 namespace Clicksign
 {
@@ -12,14 +12,17 @@ namespace Clicksign
         /// Get or set id
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Get or set document id
         /// </summary>
         public int DocumentId { get; set; }
+
         /// <summary>
         /// Get or set url
         /// </summary>
         public string Url { get; set; }
+
         /// <summary>
         /// Get or set created date
         /// </summary>

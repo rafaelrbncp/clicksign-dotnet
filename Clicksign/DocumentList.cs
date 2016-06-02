@@ -1,6 +1,6 @@
+using RestSharp.Deserializers;
 using System;
 using System.Collections.Generic;
-using RestSharp.Deserializers;
 
 namespace Clicksign
 {

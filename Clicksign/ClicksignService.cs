@@ -1,20 +1,21 @@
+using log4net;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Clicksign.Extensions;
-using log4net;
-using RestSharp;
 
 namespace Clicksign
 {
     public class ClicksignService
     {
-        public readonly List<string> Errors = new List<string>();
+        public bool HasErrors => Errors.Any();
+        public List<string> Errors { get; private set; }
         public ILog Log { get; set; }
 
         public ClicksignService()
         {
             Log = LogManager.GetLogger("ClicksignService");
+            Errors = new List<string>();
         }
 
         public IRestResponse<HookResult> RetrieveHookResult(IRestClient client, IRestRequest request)
@@ -47,7 +48,7 @@ namespace Clicksign
 
                 Log.Info($"Status Code {response.StatusCode}, Status Description {(string.IsNullOrEmpty(response.StatusDescription) ? "is empty" : response.StatusDescription)} and Content {(string.IsNullOrEmpty(response.Content) ? "is empty" : response.Content)}");
 
-                response.EnsureSuccess();
+                //response.EnsureSuccess();
 
                 if (response.ErrorException != null)
                     throw response.ErrorException;

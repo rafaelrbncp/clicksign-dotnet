@@ -1,6 +1,3 @@
-using System;
-using System.Security.AccessControl;
-
 namespace Clicksign
 {
     /// <summary>
@@ -12,30 +9,37 @@ namespace Clicksign
         /// Get or set <see cref="SignatoryAction"/>
         /// </summary>
         public SignatoryAction Action { get; set; }
+
         /// <summary>
         /// Get or set E-mail
         /// </summary>
         public string Email { get; set; }
+
         /// <summary>
         /// Get or set <see cref="SignatoryAllowMethod"/>
         /// </summary>
         public SignatoryAllowMethod AllowMethod { get; set; }
+
         /// <summary>
         /// Get or set PhoneNumber
         /// </summary>
         public string PhoneNumber { get; set; }
+
         /// <summary>
         /// Get or set DisplayName
         /// </summary>
         public string DisplayName { get; set; }
+
         /// <summary>
         /// Get or set Documentation
         /// </summary>
         public string Documentation { get; set; }
+
         /// <summary>
         /// Get or set Birthday
         /// </summary>
         public string Birthday { get; set; }
+
         /// <summary>
         /// Get or set SkipDocumentation
         /// </summary>

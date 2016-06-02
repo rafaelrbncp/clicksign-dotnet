@@ -1,7 +1,7 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Linq;
 using System.Net;
-using RestSharp;
 
 namespace Clicksign.Extensions
 {

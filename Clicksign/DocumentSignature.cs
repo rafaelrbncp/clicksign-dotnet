@@ -1,5 +1,5 @@
-using System;
 using RestSharp.Deserializers;
+using System;
 
 namespace Clicksign
 {
@@ -19,6 +19,7 @@ namespace Clicksign
         /// </summary>
         [DeserializeAs(Name = "title")]
         public string Title { get; set; }
+
         /// <summary>
         /// Get or set company
         /// </summary>

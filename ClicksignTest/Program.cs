@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Clicksign;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Clicksign;
 
 namespace ClicksignTest
 {
-    class Program
+    internal class Program
     {
         private static void Main()
         {
@@ -27,12 +27,11 @@ namespace ClicksignTest
                 new List<Signatory>
                 {
                     new Signatory { Email = "rafaelrbncp@gmail.com", Action = SignatoryAction.Sign },
-                    new Signatory { Email = "rafael.pena@animaeducacao.com.br", Action = SignatoryAction.Sign }
+                    new Signatory { Email = "rafael.pena@animaeducacao.com.br", Action = SignatoryAction.Sign, AllowMethod = SignatoryAllowMethod.Sms}
                 });
 
             Console.WriteLine(response1.Document.Key);
             Console.WriteLine(response2.Document.Key);
-
         }
 
         private static void Get()
@@ -52,6 +51,5 @@ namespace ClicksignTest
 
             File.WriteAllBytes("Download-Clicksign.zip", downloadResponse.binaryFile);
         }
-
     }
 }

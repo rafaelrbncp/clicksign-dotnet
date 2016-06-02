@@ -1,11 +1,11 @@
-﻿using System;
+﻿using log4net;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net;
-using log4net;
-using RestSharp;
 
 namespace Clicksign
 {
@@ -26,6 +26,7 @@ namespace Clicksign
             Log = LogManager.GetLogger("Clicksign");
 
             _clicksignService = new ClicksignService();
+            Errors = new List<string>();
         }
 
         private ILog Log { get; set; }
@@ -65,6 +66,16 @@ namespace Clicksign
         /// Get <see cref="Document"/>
         /// </summary>
         public Document Document { get; private set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public List<string> Errors { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool HasErrors => Errors.Any();
 
         /// <summary>
         /// Upload file, more information visit <see cref="http://clicksign.github.io/rest-api-v2/#upload-de-documentos">Clicksign Rest API</see>
@@ -131,7 +142,7 @@ namespace Clicksign
         /// </summary>
         /// <example>
         ///     <see cref="http://clicksign.github.io/rest-api-v2/#criacao-de-lista-de-assinatura">Sample and documentation</see>
-        /// </example>        
+        /// </example>
         /// <param name="signatories">List of <see cref="Signatory"/></param>
         /// <returns><see cref="Clicksign"/></returns>
         public Clicksign Signatories(IList<Signatory> signatories)
@@ -144,7 +155,7 @@ namespace Clicksign
         /// </summary>
         /// <example>
         ///     <see cref="http://clicksign.github.io/rest-api-v2/#criacao-de-lista-de-assinatura">Sample and documentation</see>
-        /// </example>  
+        /// </example>
         /// <param name="document"><see cref="Document"/></param>
         /// <param name="signatory"><see cref="Signatory"/></param>
         /// <returns><see cref="Clicksign"/></returns>
@@ -158,7 +169,7 @@ namespace Clicksign
         /// </summary>
         /// <example>
         ///     <see cref="http://clicksign.github.io/rest-api-v2/#criacao-de-lista-de-assinatura">Sample and documentation</see>
-        /// </example>  
+        /// </example>
         /// <param name="document"><see cref="Document"/></param>
         /// <param name="signatories">List of <see cref="Signatory"/></param>
         /// <returns><see cref="Clicksign"/></returns>
@@ -207,8 +218,11 @@ namespace Clicksign
 
             var response = _clicksignService.RetrieveResult(client, request);
 
-            if (_clicksignService.Errors.Any())
+            if (_clicksignService.HasErrors)
+            {
+                Errors = _clicksignService.Errors;
                 return this;
+            }
 
             Document = response.Data.Document;
             return this;
@@ -270,7 +284,6 @@ namespace Clicksign
 
             return this;
         }
-
 
         /// <summary>
         /// Create hook, more information visit <see cref="http://clicksign.github.io/rest-api-v2/#hooks">Clicksign Rest API</see>

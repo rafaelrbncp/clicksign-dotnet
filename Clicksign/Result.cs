@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Clicksign
 {
     /// <summary>
@@ -15,6 +13,6 @@ namespace Clicksign
         /// <summary>
         /// Get or set <see cref="Errors"/>
         /// </summary>
-        public Errors Errors { get; set; }        
+        public Errors Errors { get; set; }
     }
 }
