@@ -21,6 +21,8 @@ namespace Clicksign
         public IRestResponse<HookResult> RetrieveHookResult(IRestClient client, IRestRequest request)
         {
             var result = Execute<HookResult>(client, request);
+            if (result?.Data?.Errors != null)
+                Errors.AddRange(result.Data.Errors.List);
             return result;
         }
 

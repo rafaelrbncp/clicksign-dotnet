@@ -1,5 +1,6 @@
 using RestSharp.Deserializers;
 using System;
+using System.Linq;
 
 namespace Clicksign
 {
@@ -7,7 +8,7 @@ namespace Clicksign
     /// Hook result, more information visit <see cref="http://clicksign.github.io/rest-api-v2/#hooks">Clicksign Rest API</see>
     /// </summary>
     public class HookResult
-    {
+    {        
         /// <summary>
         /// Get or set id
         /// </summary>
@@ -34,5 +35,9 @@ namespace Clicksign
         /// </summary>
         [DeserializeAs(Name = "updated_at")]
         public DateTime Updated { get; set; }
+
+        public Errors Errors { get; set; }
+
+        public bool HasErrors =>  (bool) (Errors == null? false : Errors?.List.Any());
     }
 }

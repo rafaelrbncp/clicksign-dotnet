@@ -21,17 +21,21 @@ namespace ClicksignTest
             const string filePath = "D:\\Documentos\\Projetos\\Oferta de disciplina\\Oferta de Disciplina ao Professor.pdf";
 
             var response1 = clicksign.Upload(filePath);
+            var document = response1.Document;
 
             var response2 = clicksign
-                .Signatories(response1.Document,
+                .Signatories(document,
                 new List<Signatory>
                 {
                     new Signatory { Email = "rafaelrbncp@gmail.com", Action = SignatoryAction.Sign },
-                    new Signatory { Email = "rafael.pena@animaeducacao.com.br", Action = SignatoryAction.Sign, AllowMethod = SignatoryAllowMethod.Sms}
+                    new Signatory { Email = "rafael.pena@animaeducacao.com.br", Action = SignatoryAction.Sign}
                 });
 
-            Console.WriteLine(response1.Document.Key);
-            Console.WriteLine(response2.Document.Key);
+            var response3 = clicksign.CreateHook(document, "http://requestb.in/1ma7ggj1");
+
+            Console.WriteLine($"{response1.HasErrors} {response1.Document.Key}");
+            Console.WriteLine($"{response2.HasErrors} {response2.Document.Key}");
+            Console.WriteLine($"{response3.HasErrors} {response3.Id}");
         }
 
         private static void Get()
